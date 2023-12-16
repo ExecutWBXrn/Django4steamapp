@@ -4,5 +4,6 @@ from .converter import *
 register_converter(PriceConverter, "price")
 
 urlpatterns = [
-    path('', index),
+    path('', index, name="home"),
+    path("about/", about, name="about"),
 ]
