@@ -5,12 +5,16 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<p>{{ menu|join:" | " }}</p>
+<p>
+    {% for i in menu %}
+    <a href="{% url i.url %}">{{ i.mainword }} {% if not forloop.last %} | {% endif %}</a>
+    {% endfor %}
+</p>
 <p><h4>Steam store!!! so big discount on cristmas you can find as well discount only on facebook-market-place, besides we have promo on free gta 7, all that you need to do, it give info yours bank card such as CVV end-data and 4pin psvrd, after it wait when santa coming to yours home and will remained letter with promo!!!!</h4></p>
 <ul>
     {% for i in DB_data %}
     {% if i.is_published %}
-    <h2>{{ i.game }}</h2>
+    <h2><a href="{{ i.url }}">{{ i.game }}</a></h2>
     <h4>Year of coming out: {{ i.year }}</h4>
     <p><h3>Description:</h3> {{ i.describe }}</p>
     <h4>Price: {{ i.price }}</h4>

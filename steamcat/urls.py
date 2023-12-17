@@ -6,4 +6,7 @@ register_converter(PriceConverter, "price")
 urlpatterns = [
     path('', index, name="home"),
     path("about/", about, name="about"),
+    path("cart/", cart, name="cart"),
+    path("furtherinfo/", furtherinfo, name="fname"),
+    path("log/", log, name="log")
 ]
