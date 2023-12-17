@@ -5,6 +5,20 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<p><h4>Steam store!!! so big discount on xmas you can find as well discount only on facebook-market-place, besides we have promo on free gta 7, all that you need to do, it give info yours bank card such as CVV end-data and 4pin psvrd, after it wait when santa coming to yours home and will remained letter with promo!!!!</h4></p>
+<p>{{ menu|join:" | " }}</p>
+<p><h4>Steam store!!! so big discount on cristmas you can find as well discount only on facebook-market-place, besides we have promo on free gta 7, all that you need to do, it give info yours bank card such as CVV end-data and 4pin psvrd, after it wait when santa coming to yours home and will remained letter with promo!!!!</h4></p>
+<ul>
+    {% for i in DB_data %}
+    {% if i.is_published %}
+    <h2>{{ i.game }}</h2>
+    <h4>Year of coming out: {{ i.year }}</h4>
+    <p><h3>Description:</h3> {{ i.describe }}</p>
+    <h4>Price: {{ i.price }}</h4>
+    {% if not forloop.last %}
+    <hr>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</ul>
 </body>
 </html>
