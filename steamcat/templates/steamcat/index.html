@@ -5,11 +5,7 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<p>
-    {% for i in menu %}
-    <a href="{% url i.url %}">{{ i.mainword }} {% if not forloop.last %} | {% endif %}</a>
-    {% endfor %}
-</p>
+{% include 'steamcat/includes/hyperlinks.html' %}
 <p><h4>Steam store!!! so big discount on cristmas you can find as well discount only on facebook-market-place, besides we have promo on free gta 7, all that you need to do, it give info yours bank card such as CVV end-data and 4pin psvrd, after it wait when santa coming to yours home and will remained letter with promo!!!!</h4></p>
 <ul>
     {% for i in DB_data %}

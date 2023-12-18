@@ -22,6 +22,12 @@ def index(request):
 def about(request):
     context={
         "title":"steamofficialaboutpage.com",
+        "menu": [
+            {"mainword": "about site", "url": "about"},
+            {"mainword": "cart", "url": "cart"},
+            {"mainword": "further information about us", "url": "fname"},
+            {"mainword": "log in", "url": "log"},
+        ],
     }
     return render(request, "steamcat/about.html", context=context)
 
@@ -30,7 +36,13 @@ def cart(request):
 
 def furtherinfo(request):
     context={
-        "title":"developercorner"
+        "title":"developercorner",
+        "menu": [
+            {"mainword": "about site", "url": "about"},
+            {"mainword": "cart", "url": "cart"},
+            {"mainword": "further information about us", "url": "fname"},
+            {"mainword": "log in", "url": "log"},
+        ],
     }
     return render(request, "steamcat/furtherinfo.html", context=context)
 def log(request):
