@@ -1,3 +1,5 @@
+{% load cat_tag %}
+{% menu as menu %}
 <p>
     {% for i in menu %}
     <a href="{% url i.url %}">{{ i.mainword }} {% if not forloop.last %} | {% endif %}</a>

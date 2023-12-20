@@ -1,0 +1,20 @@
+{% load static %}
+{% load cat_tag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'steamcat/css/css.css' %}">
+    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'steamcat/img/steamicon.svg' %}">
+</head>
+<body>
+{% include 'steamcat/includes/hyperlinks.html' %}
+{% cat as cat %}
+{% for i in cat %}
+<li>
+    {{ i.title }}
+</li>
+{% endfor %}
+</body>
+</html>
