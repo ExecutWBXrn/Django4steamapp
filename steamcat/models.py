@@ -9,4 +9,9 @@ class Games(models.Model):
     is_published = models.BooleanField(default=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
-w = Games(game = "ELDEN RING", year = 2022, describe = "THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.", price = 1799, url = "https://store.steampowered.com/app/1245620/ELDEN_RING/")
+
+    def __str__(self):
+        return self.title
+
+    def __repr__(self):
+        return f"\ntitle:{self.game}\nyear:{self.year}"
