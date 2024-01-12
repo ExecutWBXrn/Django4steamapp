@@ -10,4 +10,5 @@ urlpatterns = [
     path("furtherinfo/", furtherinfo, name="fname"),
     path("log/", log, name="log"),
     path("categories/", categories, name="cat"),
+    path("steam/<slug:game_slug>/", aboutgame, name="finfoaboutgame"),
 ]

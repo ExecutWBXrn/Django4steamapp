@@ -1,5 +1,6 @@
 from django import template
 import steamcat.views as views
+from steamcat.models import Games
 
 register = template.Library()
 

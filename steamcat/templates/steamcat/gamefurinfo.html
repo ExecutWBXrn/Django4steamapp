@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'steamcat/css/css.css' %}"/>
+    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'steamcat/img/steamicon.svg' %}"/>
+</head>
+<body>
+{% include 'steamcat/includes/hyperlinks.html' %}
+<ul>
+    {% for i in db %}
+    {% if i.slug == game_slug %}
+    <h2><a href="{{ i.url }}">{{ i.game }}</a></h2>
+    <h4>Year of coming out: {{ i.year }}</h4>
+    <p><h3>Description:</h3> {{ i.describe }} </p>
+    <h4>Price: {{ i.price }}</h4>
+    <a href="#"><h3>BUY NOW</h3></a>
+    {% endif %}
+    {% endfor %}
+</ul>
+</body>
+</html>

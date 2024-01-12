@@ -15,7 +15,7 @@
     {% if i.is_published %}
     <h2><a href="{{ i.url }}">{{ i.game }}</a></h2>
     <h4>Year of coming out: {{ i.year }}</h4>
-    <p><h3>Description:</h3> {{ i.describe }}</p>
+    <p><h3>Description:</h3> {{ i.describe }} <a href="{{ i.get_absolute_url }}"><h5>further information</h5></a></p>
     <h4>Price: {{ i.price }}</h4>
     {% if not forloop.last %}
     <hr>

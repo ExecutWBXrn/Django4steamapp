@@ -1,12 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 
-db_data = [
-    {"id":1, "game":"Cyberpunk 2077", "year":2020,"describe":"Cyberpunk 2077 is an open-world, action-adventure RPG set in the dark future of Night City — a dangerous megalopolis obsessed with power, glamor, and ceaseless body modification.", "price":"1000UAN","url":"https://store.steampowered.com/app/1091500/Cyberpunk_2077/" ,"is_published":True},
-    {"id":2, "game":"S.T.A.L.K.E.R. 2: Heart of Chornobyl", "year":"Q1 2024","describe":"Discover the vast Chornobyl Exclusion Zone full of dangerous enemies, deadly anomalies and powerful artifacts. Unveil your own epic story as you make your way to the Heart of Chornobyl. Make your choices wisely, as they will determine your fate in the end.", "price":"895UAN","url":"https://store.steampowered.com/app/1643320/STALKER_2_Heart_of_Chornobyl/", "is_published":True},
-    {"id":3, "game":"ELDEN RING", "year":2022 ,"describe":"THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.", "price":"1799UAN","url":"https://store.steampowered.com/app/1245620/ELDEN_RING/" ,"is_published":True},
-]
-
+from .models import Games
+db_data = Games.objects.all()
 cat_db = [
     {"id":1, "title":"Sci-Fi"},
     {"id":2, "title":"Sport"},
@@ -41,6 +37,15 @@ def categories(request):
         "title":"categories"
     }
     return render(request, "steamcat/categories.html", context=context)
+
+def aboutgame(request, game_slug):
+    w=get_object_or_404(Games, slug=game_slug)
+    context = {
+        "title":w.game,
+        "db":db_data,
+        "game_slug":game_slug,
+    }
+    return render(request, "steamcat/gamefurinfo.html", context=context)
 
 def notfound(request, exception):
     return HttpResponseNotFound("No hello steam(")
