@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('steamcat', '0003_category_alter_games_slug_games_cat'),
+        ('steamcat', '0002_games_slug'),
     ]
 
     operations = [

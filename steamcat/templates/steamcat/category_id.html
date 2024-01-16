@@ -1,0 +1,35 @@
+{% load static %}
+{% load cat_tag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'steamcat/css/css.css' %}" />
+    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'steamcat/img/steamicon.svg' %}" />
+</head>
+<body>
+{% include 'steamcat/includes/hyperlinks.html' %}
+{% cat as cat %}
+<p>
+{% for i in cat %}
+    {% if i.slug == cat_id %}
+    <h1>GAMES THAT CONTAIN {{ i.name }} TAG:</h1>
+    {% for j in db_data %}
+    {% if j.cat_id == i.pk %}
+    {% if j.is_published %}
+    <h2><a href="{{ j.url }}">{{ j.game }}</a></h2>
+    <h4>Year of coming out: {{ j.year }}</h4>
+    <p><h3>Description:</h3> {{ j.describe }} <a href="{{ j.get_absolute_url }}"><h5>further information</h5></a></p>
+    <h4>Price: {{ j.price }}</h4>
+    {% if not forloop.last %}
+    <hr>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+</p>
+</body>
+</html>

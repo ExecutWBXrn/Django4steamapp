@@ -1,14 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 
-from .models import Games
+from .models import Games, Category
 db_data = Games.objects.all()
-cat_db = [
-    {"id":1, "title":"Sci-Fi"},
-    {"id":2, "title":"Sport"},
-    {"id":3, "title":"RPG"},
-    {"id":4, "title":"Shooter"},
-]
+cat_db = Category.objects.all()
 def index(request):
     context = {
         "title":"steamofficial.com",
@@ -37,6 +32,15 @@ def categories(request):
         "title":"categories"
     }
     return render(request, "steamcat/categories.html", context=context)
+
+def categories_id(request, cat_id):
+    w=get_object_or_404(Category, slug=cat_id)
+    context = {
+        "title":w.name,
+        "cat_id":cat_id,
+        "db_data":db_data,
+    }
+    return render(request, "steamcat/category_id.html", context=context)
 
 def aboutgame(request, game_slug):
     w=get_object_or_404(Games, slug=game_slug)

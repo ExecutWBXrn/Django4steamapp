@@ -11,10 +11,11 @@
 <body>
 {% include 'steamcat/includes/hyperlinks.html' %}
 {% cat as cat %}
+<p>
 {% for i in cat %}
-<li>
-    {{ i.title }}
-</li>
+    <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+    {% if not forloop.last %}|{% endif %}
 {% endfor %}
+</p>
 </body>
 </html>

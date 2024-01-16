@@ -29,3 +29,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("cat_id", kwargs={"cat_id":self.slug})
