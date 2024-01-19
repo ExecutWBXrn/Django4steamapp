@@ -3,20 +3,23 @@ from django.urls import reverse
 
 
 class Games(models.Model):
+    class Status(models.IntegerChoices):
+        DRAFT = 0, 'DRAFT'
+        PUBLISHED = 1, 'PUBLISHED'
     game = models.CharField(max_length=255)
     year = models.IntegerField(blank=True)
     describe = models.TextField(blank=True)
     price = models.IntegerField()
     slug = models.SlugField(max_length=255, unique=True, db_index=True)
     url = models.TextField(blank=True)
-    is_published = models.BooleanField(default=True)
+    is_published = models.BooleanField(choices=Status.choices ,default=Status.PUBLISHED)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     cat = models.ForeignKey("Category", on_delete=models.PROTECT)
     tags = models.ManyToManyField("TagPosts", blank=True, related_name='tags')
 
     def __str__(self):
-        return self.title
+        return self.game
 
     def __repr__(self):
         return f"\ntitle:{self.game}\nyear:{self.year}"
@@ -40,3 +43,6 @@ class TagPosts(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("tag_tag_slug", kwargs={"tag_slug":self.slug})

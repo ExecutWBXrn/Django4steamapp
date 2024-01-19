@@ -16,6 +16,7 @@ def menu():
         {"mainword": "cart", "url": "cart"},
         {"mainword": "further information about us", "url": "fname"},
         {"mainword": "log in", "url": "log"},
-        {"mainword": "categories", "url": "cat"}
+        {"mainword": "categories", "url": "cat"},
+        {"mainword": "tags", "url": "tag_path"},
     ]
     return mainmenu

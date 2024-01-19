@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 
-from .models import Games, Category
+from .models import Games, Category, TagPosts
 db_data = Games.objects.all()
 cat_db = Category.objects.all()
+tag_db = TagPosts.objects.all()
 def index(request):
     context = {
         "title":"steamofficial.com",
@@ -39,6 +40,7 @@ def categories_id(request, cat_id):
         "title":w.name,
         "cat_id":cat_id,
         "db_data":db_data,
+        "post":w,
     }
     return render(request, "steamcat/category_id.html", context=context)
 
@@ -48,8 +50,26 @@ def aboutgame(request, game_slug):
         "title":w.game,
         "db":db_data,
         "game_slug":game_slug,
+        "post":w,
     }
     return render(request, "steamcat/gamefurinfo.html", context=context)
+
+def tag_tag_slug(request, tag_slug):
+    w=get_object_or_404(TagPosts, slug=tag_slug)
+    post=w.tags.filter(is_published=Games.Status.PUBLISHED)
+    context = {
+        "title":w.name,
+        "tag_slug":tag_slug,
+        "post":post,
+    }
+    return render(request, "steamcat/tag+tag_slug.html", context=context)
+
+def tag(request):
+    context={
+        "title":"steam tags",
+        "tag_db":tag_db,
+    }
+    return render(request, "steamcat/tag.html", context=context)
 
 def notfound(request, exception):
     return HttpResponseNotFound("No hello steam(")

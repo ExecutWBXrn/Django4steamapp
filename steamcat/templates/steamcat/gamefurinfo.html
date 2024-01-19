@@ -10,15 +10,26 @@
 <body>
 {% include 'steamcat/includes/hyperlinks.html' %}
 <ul>
+    {% with post.tags.all as tags %}
     {% for i in db %}
     {% if i.slug == game_slug %}
     <h2><a href="{{ i.url }}">{{ i.game }}</a></h2>
     <h4>Year of coming out: {{ i.year }}</h4>
     <p><h3>Description:</h3> {{ i.describe }} </p>
     <h4>Price: {{ i.price }}</h4>
+    {% if tags %}
+    Tags:
+    {% for t in tags %}
+    <a href="{{ t.get_absolute_url }}">{{ t.name }}</a>
+    {% if not forloop.last %}
+    ,
+    {% endif %}
+    {% endfor %}
+    {% endif %}
     <a href="#"><h3>BUY NOW</h3></a>
     {% endif %}
     {% endfor %}
+    {% endwith %}
 </ul>
 </body>
 </html>
