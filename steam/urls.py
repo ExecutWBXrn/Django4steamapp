@@ -21,6 +21,10 @@ from steamcat.views import notfound
 urlpatterns = [
     path('', include("steamcat.urls")),
     path('admin/', admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 handler404 = notfound
+
+admin.site.site_header = "Адмін панель"
+admin.site.index_title = "Адміністрування Steam"
