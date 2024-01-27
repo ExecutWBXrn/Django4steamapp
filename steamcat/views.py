@@ -27,7 +27,10 @@ def furtherinfo(request):
     }
     return render(request, "steamcat/furtherinfo.html", context=context)
 def log(request):
-    return HttpResponse("This function not availabel yet")
+    context = {
+        "title": "log",
+    }
+    return render(request, "steamcat/log.html", context=context)
 def categories(request):
     context = {
         "title":"categories"

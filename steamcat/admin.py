@@ -9,6 +9,11 @@ class GamesAdmin(admin.ModelAdmin):
     list_per_page = 5
     ordering = ["time_create", "game"]
     actions = ["set_published", "set_draft"]
+    search_fields = ["game", "cat__name", "slug"]
+    list_filter = ["cat__name", "is_published"]
+    prepopulated_fields = {'slug': ("game", )}
+    filter_horizontal = ["tags"]
+
     @admin.display(description="Фурзер інформайшен", ordering="describe")
     def brief_info(self, games: Games):
         return f"{len(games.describe)} символів в описі"
